@@ -1,0 +1,40 @@
+<template name="comment">
+
+    <div class="media">
+        {{#if userImage}}
+            <a class="pull-left" href="{{pathFor 'userProfile'}}"><img class="media-object" src="{{userImage}}" alt=""></a>
+        {{else}}
+            <a class="pull-left" href="{{pathFor 'userProfile'}}"><img class="media-object" src="/img/no-avatar.jpg" alt=""></a>
+        {{/if}}
+        <div class="media-body">
+            <h4 class="media-heading"><a href="{{pathFor 'userProfile'}}"><i class="fa fa-user" aria-hidden="true"></i> {{author}}</a></h4>
+            {{#if isEditingComment}}
+                <form class="editing-comment">
+                    <textarea class="form-control comment-edit-input" rows="3" maxlength='200'>{{body}}</textarea>
+                    <span style="color: #444444;;" class="countdownEdit">200 caracteres restantes.</span>
+                    <input id="submit-edited-comment" type="submit" value="Guardar" class="pull-right btn-sm btn-primary"/>
+                </form>
+            {{else}}
+                <p class="grey">{{body}}</p>
+            {{/if}}
+            <ul class="list-unstyled list-inline media-detail pull-left">
+                <li><i class="fa fa-clock-o" aria-hidden="true"></i>{{livestamp createdAt}}</li>
+            </ul>
+            <ul class="list-unstyled list-inline media-detail pull-right">
+                <li class="comment-like"><a href="" class="{{liked}}"><i class="fa fa-heart"></i></a>
+                    {{#if likesCount}}
+                        {{likesCount}}
+                    {{else}}
+                        0
+                    {{/if}}
+                </li>
+                {{#if ownComment}}
+                    <li class="remove"><a href="" class="delete"><i class="fa fa-trash"></i></a></li>
+                    <li><a href="" class="edit-comment"><i class="fa fa-pencil"></i></a></li>
+                {{/if}}
+                <li class=""><a href="">Reply</a></li>
+            </ul>
+        </div>
+    </div>
+
+</template>

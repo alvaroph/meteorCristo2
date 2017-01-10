@@ -1,0 +1,29 @@
+<template name="userProfileFollowing">
+
+    <div class="col-md-6">
+
+        <div class="text-center">
+            <h5>Siguiendo</h5>
+        </div>
+
+        {{#if followingInfo}}
+            <div class="row">
+                {{#each followingInfo}}
+                    {{>followCard}}
+                {{/each}}
+            </div>
+        {{else}}
+            <div class="alert-user">
+                <div class="center-div">
+                    {{#if ownProfile}}
+                        <h4>No sigues a nadie!</h4>
+                    {{else}}
+                        <h4>Este usuario no sigue a nadie!</h4>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+    </div>
+
+</template>

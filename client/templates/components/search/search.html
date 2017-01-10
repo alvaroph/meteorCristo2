@@ -1,0 +1,46 @@
+<template name="search">
+
+    <div class="col-sm-3 col-md-3">
+        <form id="search" class="navbar-form" role="search">
+            <div class="input-group">
+                <div class='suggest-holder'>
+                    {{> EasySearch.Input indexes=searchIndexes  attributes=inputAttributes}}
+                    <!--<input type='text' id="search-box" class='suggest-prompt form-control' placeholder="Search" name="q" autocomplete="off">-->
+
+                    <ul class="suggestions">
+
+                        {{#EasySearch.IfNoResults indexes=searchIndexes logic="AND" }}
+                            <li class="search-no-results" style="color: #444444"><strong>No hay resultados (ಥ﹏ಥ)</strong></li>
+                        {{/EasySearch.IfNoResults}}
+
+                        {{#EasySearch.IfSearching indexes=searchIndexes logic="OR" }}
+                            <li class="searching" style="color: #444444"><strong>Buscando... (~˘▾˘)~</strong></li>
+                        {{/EasySearch.IfSearching}}
+
+                        {{#EasySearch.Each index=postsIndex }}
+                            {{>postSuggestions}}
+                        {{/EasySearch.Each}}
+                        {{#EasySearch.Each index=usersIndex }}
+                            {{>userSuggestions}}
+                        {{/EasySearch.Each}}
+                    </ul>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</template>
+
+<template name="postSuggestions">
+    <li class="postSugg">
+        <span class='suggest-name' style="color: black;">{{title}}</span>
+        <span class='suggest-description' style="color: black;">{{shortDescription}}</span>
+    </li>
+</template>
+
+<template name="userSuggestions">
+    <li class="userSugg">
+        <span class='suggest-name' style="color: black;">{{username}}</span>
+    </li>
+</template>

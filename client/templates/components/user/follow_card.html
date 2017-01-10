@@ -1,0 +1,40 @@
+<template name="followCard">
+
+    <figure class="follow-card col-sm-4">
+        {{#if profile.display_picture}}
+            <img src="{{profile.display_picture}}" class="img-responsive" alt="{{username}}" />
+        {{else}}
+            <img src="/img/no-avatar.jpg" class="img-responsive" alt="{{username}}" />
+        {{/if}}
+
+        <figcaption style="background-color: {{userBgColor}};">
+            <a href="{{pathFor 'userProfile' userId=_id}}"><h2>{{username}}</h2></a>
+            <h3>{{profile.firstName}} {{profile.lastName}}</h3>
+            <p>{{profile.description}}</p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="{{pathFor 'userProfileFollowing' userId=_id}}" class="text-center">
+                        <span class="statLabel">{{i18n 'userCard.following'}}</span>
+                        {{#if followingCount}}
+                            <span>{{followingCount}}</span>
+                        {{else}}
+                            <span>0</span>
+                        {{/if}}
+
+                    </a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="{{pathFor 'userProfileFollowers' userId=_id}}" class="text-center">
+                        <span class="statLabel">{{i18n 'userCard.followers'}}</span>
+                        {{#if followersCount}}
+                            <span>{{followersCount}}</span>
+                        {{else}}
+                            <span>0</span>
+                        {{/if}}
+                    </a>
+                </div>
+            </div>
+        </figcaption>
+    </figure>
+
+</template>

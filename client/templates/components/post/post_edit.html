@@ -1,0 +1,61 @@
+<template name="postEdit">
+
+    {{#autoForm collection="Posts" doc=this id="updatePost" autocomplete="off"}}
+
+
+        {{> afQuickField name='title' class='title form-control'}}
+
+        {{> afQuickField name='shortDescription' class='short-description form-control'}}
+
+
+        <div class="form-group youtube">
+            <div class="controls">
+                {{> afQuickField name='youtubeUrl' class='youtube-url form-control'}}
+            </div>
+        </div>
+
+        <div class="preview image-container">
+            <figure class="image-with-icon red">
+                <img id="image_preview" src="" alt=""/>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <a id="delete-image-preview"></a>
+            </figure>
+        </div>
+
+        {{#if image}}
+            <label for="post-image" class="control-label">{{i18n 'postForm.imageField'}}</label>
+
+            <div class="image-container">
+                <figure class="image-with-icon red">
+                    <img src="{{image}}" alt=""/>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    <a id="delete-image"></a>
+                </figure>
+            </div>
+
+        {{else}}
+
+            <div class="form-group upload">
+                <div class="controls">
+                    <label for="upload-file" class="control-label">{{i18n 'postForm.imageField'}}</label>
+                    <label for="file" class="dropzone">
+                        <input type="file" class="image" id="upload-file" name="image" onchange="this.form.fileName.value = this.value" accept="image/*">
+                        <input type="text" id="fileName" name="fileName" placeholder="{{i18n 'dragAndDrop'}}" readonly>
+                    </label>
+                </div>
+            </div>
+
+        {{/if}}
+
+        <div class="form-group">
+            <div class="controls">
+                {{> afQuickField name='description' class='description form-control'}}
+            </div>
+        </div>
+
+        <input id="enviar" type="submit" value="{{i18n 'postForm.saveButton'}}" class="btn btn-primary"/>
+        <button id="eliminar" type="button" class="btn btn-danger">{{i18n 'postForm.deleteButton'}}</button>
+    {{/autoForm}}
+
+    <hr>
+</template>

@@ -1,0 +1,34 @@
+<template name="recommendations">
+
+    <div class="hidden-xs {{isActiveRoute regex='userProfile|userProfileFollowers|userProfileFollowing|userProfileEdit|userDifference' class='sidebar-outer col-md-3'}}">
+        <div style="background: {{bgColor}}" class="panel panel-default {{isActiveRoute regex='userProfile|userProfileFollowers|userProfileFollowing|userProfileEdit|userDifference' class='sidebar'}}">
+            <div style="background: {{bgColor}} !important;" class="panel-heading recommendations-heading"><h6 class="text-uppercase"><strong>{{i18n 'randomUsers'}}</strong></h6></div>
+            <div style="background: {{bgColor}}" class="panel-body recommendations">
+                {{#each users}}
+                    <div class="recommendation row">
+                        <div class="col-xs-2">
+                            {{#if profile.display_picture}}
+                                <img src="{{profile.display_picture}}" class="img-circle img-responsive">
+                            {{else}}
+                                <img src="/img/no-avatar.jpg" class="img-circle img-responsive">
+                            {{/if}}
+                        </div>
+                        <div class="col-xs-7 recommendation-text">
+                            <a href="/profile/{{_id}}"> <strong>{{username}}</strong> </a>
+                            <p>{{profile.description}}</p>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <div class="follow-recommendation">
+                                <a class="follow" href=""><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+                <div class="clearfix"></div>
+                <ul class="list-unstyled"><li><a href="{{pathFor 'postsList'}}">Proyecto</a></li></ul>
+            </div>
+        </div>
+    </div>
+
+</template>

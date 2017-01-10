@@ -1,0 +1,60 @@
+<template name="postPage">
+
+    <div class="{{NoImageOrVideo}}">
+
+        <h2>{{title}}</h2>
+
+        <p class="lead">
+            por <a href="{{pathFor 'userProfile'}}">{{author}}</a>
+        </p>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> Publicado el {{formatDate createdAt}} a las {{formatHour createdAt}}</p>
+        <hr>
+        <div class="post-description">
+            {{{description}}}
+        </div>
+    </div>
+
+    <div class="col-md-6 text-center">
+        {{#if image}}
+            <img style="display: inline-block" class="img-responsive" src="{{image}}" alt="{{title}}"/>
+        {{/if}}
+        {{#if youtubeUrl}}
+            <div class="videoWrapper">
+                <iframe width="560" height="349" src="https://www.youtube.com/embed/{{youtubeId}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+        {{/if}}
+
+    </div>
+
+    <div class="col-xs-12">
+
+        {{#if ownPost}}
+            <a style="padding-right: 10px; font-size: 2rem;" href="{{pathFor 'postEdit'}}"><i class=" fa fa-pencil"></i></a>
+        {{/if}}
+
+        <a style="font-size: 2rem;" class="{{liked}} heart"><i class=" fa fa-heart"></i> </a> <likesCount class="grey">{{likesCount}}</likesCount>
+
+        <div id="shareIcons"></div>
+
+    </div>
+
+    <hr>
+
+    <div class="col-xs-12">
+        {{>commentForm}}
+    </div>
+
+    <hr>
+
+
+    <div class="col-xs-12">
+        <section class="content-item" id="comments">
+            {{#each comments}}
+                {{>comment}}
+            {{/each}}
+        </section>
+    </div>
+
+
+
+</template>

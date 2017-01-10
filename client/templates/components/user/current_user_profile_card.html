@@ -1,0 +1,64 @@
+<template name="currentUserProfileCard">
+
+    <div class="panel panel-default panel-card">
+        <div class="panel-heading">
+            {{#if currentUser.profile.cardImage}}
+                <img src="{{currentUser.profile.cardImage}}" />
+            {{else}}
+                <img src="/img/card-header.jpg" />
+            {{/if}}
+
+            <a href="{{pathFor 'userProfileEdit' userId=currentUser._id}}" class="btn btn-primary btn-sm edit-profile" role="button">{{i18n 'userCard.editProfile'}}</a>
+        </div>
+        <div class="panel-figure">
+            {{#if currentUser.profile.display_picture}}
+                <img class="img-responsive img-circle" alt="" src="{{currentUser.profile.display_picture}}">
+            {{else}}
+                <img class="img-responsive img-circle" alt="" src="/img/no-avatar.jpg">
+            {{/if}}
+        </div>
+        <div class="panel-body text-center">
+            <p class="grey">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</p>
+            <h4 class="panel-header">
+                <a href="{{pathFor 'userProfile' userId=currentUser._id}}">{{currentUser.username}}</a>
+            </h4>
+            <small style="color: black">{{currentUser.profile.description}}</small>
+        </div>
+        <div class="panel-thumbnails">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a href="{{pathFor 'userProfile' userId=currentUser._id}}" class="text-center">
+                        <span class="statLabel">{{i18n 'userCard.posts'}}</span>
+                        {{#if currentUser.postsCount}}
+                            <span>{{currentUser.postsCount}}</span>
+                        {{else}}
+                            <span>0</span>
+                        {{/if}}
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a href="{{pathFor 'userProfileFollowing' userId=currentUser._id}}" class="text-center">
+                        <span class="statLabel">{{i18n 'userCard.following'}}</span>
+                        {{#if currentUser.followingCount}}
+                            <span>{{currentUser.followingCount}}</span>
+                        {{else}}
+                            <span>0</span>
+                        {{/if}}
+
+                    </a>
+                </div>
+                <div class="col-xs-4">
+                    <a href="{{pathFor 'userProfileFollowers' userId=currentUser._id}}" class="text-center">
+                        <span class="statLabel">{{i18n 'userCard.followers'}}</span>
+                        {{#if currentUser.followersCount}}
+                            <span>{{currentUser.followersCount}}</span>
+                        {{else}}
+                            <span>0</span>
+                        {{/if}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</template>

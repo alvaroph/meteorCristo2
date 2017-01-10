@@ -1,0 +1,43 @@
+<template name="allNotifications">
+    <div class="col-md-8">
+        {{#if notifications.count}}
+            {{#each notifications}}
+                {{>notificationItemRead}}
+            {{/each}}
+        {{else}}
+            <div class="alert-user">
+                <div class="center-div">
+                    <h4>No hay notificaciones</h4>
+                </div>
+            </div>
+        {{/if}}
+
+    </div>
+</template>
+
+<template name="notificationItemRead">
+    <div class="notification notification-read {{notViewed}}">
+        <div class="media">
+            {{#if read}}
+                <span title="Eliminar" class="delete pull-right"> <i class="fa fa-times"></i></span>
+            {{else}}
+                <span title="Marcar como leída" class="read-notification pull-right"> <i class="fa fa-eye-slash"></i></span>
+                <span class="label label-danger pull-right">{{i18n 'new'}}</span>
+            {{/if}}
+
+            <div class="media-left">
+                <div class="media-object">
+                    <img src="{{userImage}}" alt="" width="30px" height="30px" class="img-rounded">
+                </div>
+            </div>
+            <div class="media-body">
+                <strong class="notification-title"><a class="user-profile" href="{{pathFor 'userProfile'}}">{{username}}</a> {{actionToText action}} <a class="postRoute" href="{{notificationPath}}">{{contentTitle}}</a></strong>
+
+                <div class="notification-desc text-left">
+                    <i class="fa fa-clock-o"></i> {{livestamp createdAt}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

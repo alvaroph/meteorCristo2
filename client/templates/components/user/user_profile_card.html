@@ -1,0 +1,98 @@
+<template name="userProfileCard">
+
+    {{#if user}}
+    {{#with user}}
+
+        <div class="col-md-3 sidebar-outer">
+
+            <div class="card hovercard sidebar">
+
+                <div class="cardheader" style="background: url({{cardImage}});">
+
+                </div>
+                <div class="avatar">
+                    {{#if profile.display_picture}}
+                        <img alt="" src="{{profile.display_picture}}">
+                    {{else}}
+                        <img alt="" src="/img/no-avatar.jpg">
+                    {{/if}}
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <h5>{{profile.firstName}} {{profile.lastName}}</h5>
+                        <a href="{{pathFor 'userProfile' userId=_id}}" >{{username}}</a>
+                    </div>
+                    <div class="desc">{{profile.description}}</div>
+                </div>
+                <div class="stats">
+                    <ul class="arrange">
+                        <li class="arrangeSizeFit">
+                            <a href="{{pathFor 'userProfile' userId=_id}}">
+                                <span class="statLabel">{{i18n 'userCard.posts'}}</span>
+                                {{#if postsCount}}
+                                    <span class="statValue">{{postsCount}}</span>
+                                {{else}}
+                                    <span class="statValue">0</span>
+                                {{/if}}
+                            </a>
+                        </li>
+                        <li class="arrangeSizeFit">
+                            <a href="{{pathFor 'userProfileFollowing' userId=_id}}">
+                                <span class="statLabel">{{i18n 'userCard.following'}}</span>
+                                {{#if followingCount}}
+                                    <span class="statValue">{{followingCount}}</span>
+                                {{else}}
+                                    <span class="statValue">0</span>
+                                {{/if}}
+
+                            </a>
+                        </li>
+                        <li class="arrangeSizeFit">
+                            <a href="{{pathFor 'userProfileFollowers' userId=_id}}">
+                                <span class="statLabel">{{i18n 'userCard.followers'}}</span>
+                                {{#if followersCount}}
+                                    <span class="statValue">{{followersCount}}</span>
+                                {{else}}
+                                    <span class="statValue">0</span>
+                                {{/if}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {{#if ownProfile}}
+
+                        <button class="profile-btn edit-profile" style="background: {{profile.bgColor}}">
+                            <i class="fa fa-pencil"></i> {{i18n 'userCard.editProfile'}}
+                        </button>
+
+                {{else}}
+                    {{#if isFollower}}
+
+                        <button class="unfollow profile-btn" style="background: {{profile.bgColor}}" >
+                            <i class="fa fa-user-times" aria-hidden="true"></i> {{i18n 'userCard.unfollow'}}
+                        </button>
+
+                    {{else}}
+
+                        <button class="follow profile-btn" style="background: {{profile.bgColor}}" >
+                            <i class="fa fa-user-plus"></i> {{i18n 'userCard.follow'}}
+                        </button>
+
+                    {{/if}}
+
+                    <button class="profile-btn difference" style="background: {{profile.bgColor}}">
+                        <i class="fa fa-bar-chart" aria-hidden="true"></i> {{i18n 'userCard.difference'}}
+                    </button>
+
+
+                {{/if}}
+            </div>
+
+        </div>
+    {{/with}}
+    {{else}}
+        <div class="col-md-3 sidebar-outer">
+        </div>
+    {{/if}}
+
+</template>

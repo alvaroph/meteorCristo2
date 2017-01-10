@@ -1,0 +1,37 @@
+<template name="signIn">
+
+    <div class="social-buttons framed">
+        <a class="btn btn-block btn-social btn-twitter">
+            <span class="fa fa-twitter"></span> Entra con Twitter
+        </a>
+        <a class="btn btn-block btn-social btn-facebook">
+            <span class="fa fa-facebook"></span> Entra con Facebook
+        </a>
+    </div>
+
+    <a href="/"><img class="logo framed" src="/img/logo-proyecto.png" alt="Tumblr logo" /></a>
+
+
+    <form id="sign-in" class="form-auth framed" novalidate="novalidate">
+        <div class="has-feedback">
+            <input type="text" id="username" placeholder="{{usernamePlaceholder}}" class="input input--top" /><span class="error-username glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <div class="has-feedback">
+            <input type="password" id="password" placeholder="{{passwordPlaceholder}}" class="input" /><span class="error-password glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+        <input type="submit" value="{{i18n 'authentication.signIn'}}" class="input input--submit" />
+        <label for="toggle--signup" class="text text--centered">{{i18n 'authentication.newUser'}}  <b><a class="text-auth" href="{{pathFor 'signUp'}}">{{i18n 'authentication.signUp'}}</a></b></label>
+        <label for="toggle--signup" class="text text--centered">{{i18n 'authentication.forgotPassword'}} <b><a class="text-auth" href="{{pathFor 'forgotPassword'}}">{{i18n 'authentication.sendForgotPassword'}}</a></b></label>
+    </form>
+
+    <div class="legal">
+        <a class="text text--border-right" href="javascript:;">Terminos</a>
+        <a class="text text--border-right" href="javascript:;">Privacidad</a>
+        <a class="text " href="javascript:;">FAQ</a>
+    </div>
+
+    <div class="photo-cred">
+        <a class="text" target="_blank"><b>Proyecto</b></a>
+    </div>
+
+</template>

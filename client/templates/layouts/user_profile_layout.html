@@ -1,0 +1,35 @@
+<template name="userProfileLayout">
+
+    {{> header}}
+    <style>
+        {{#if bgColor}}
+            .bgColor{
+                background: {{bgColor}} !important;
+            }
+        {{/if}}
+        {{#if textColor}}
+            .textColor *{
+                color: {{textColor}} !important;
+            }
+        {{/if}}
+
+    </style>
+    <div class="bg-user-color bgColor textColor">
+        <div class="container contenido bgColor textColor">
+
+            <div class="row" >
+
+                {{>userProfileCard}}
+
+                {{>yield}}
+
+                {{>recommendations}}
+
+            </div>
+
+        </div>
+    </div>
+
+    {{>backToTop}}
+
+</template>
